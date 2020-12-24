@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:caritakeun_kelompok4/pages/daftar.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -21,15 +22,6 @@ class _LoginState extends State<Login> {
               fontWeight: FontWeight.bold,
               fontSize: 18,
             )),
-        // actions: <Widget>[
-        //   IconButton(
-        //     color: Colors.white,
-        //     icon: Icon(Icons.add),
-        //     onPressed: () {
-        //       print('Tambah data diklik!');
-        //     },
-        //   )
-        // ]
       ),
       body: Container(
           padding: EdgeInsets.only(
@@ -206,7 +198,11 @@ class _LoginState extends State<Login> {
                         ),
                         color: Colors.transparent,
                         onPressed: () {
-                          // showToast('Username Password Salah');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Daftar(),
+                              ));
                         },
                       ),
                     ]),
