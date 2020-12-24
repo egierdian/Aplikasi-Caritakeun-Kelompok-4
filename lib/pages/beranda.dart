@@ -11,33 +11,25 @@ class _BerandaState extends State<Beranda> {
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
-          backgroundColor: Color(0xFFEEEEEE),
+          backgroundColor: Color(0xFF1D1735),
           brightness: Brightness.light,
           title: Text('Caritakeun',
               style: TextStyle(
-                color: Colors.black87,
-                fontSize: 18,
+                fontFamily: 'Rajdhani',
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
+                fontSize: 18,
               )),
-          // centerTitle: true,
-          // leading: IconButton(
-          //   color: Colors.black87,
-          //   icon: Icon(Icons.add),
-          //   onPressed: () {
-          //     print('Add');
-          //   },
-          // ),
           actions: <Widget>[
             IconButton(
-              color: Colors.black87,
+              color: Colors.white,
               icon: Icon(Icons.add),
               onPressed: () {
-                print('Add Story clicked!');
+                print('Tambah data diklik!');
               },
             )
           ]),
       body: Container(
-          // padding
           padding: EdgeInsets.only(
             top: 10,
             right: 20,
@@ -46,31 +38,140 @@ class _BerandaState extends State<Beranda> {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
                 padding: new EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
+                  // bisa untuk border
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(1, 2),
                     ),
-                    bottom: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                    left: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                    right: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                  ),
+                  ],
                 ),
-                height: 200,
+                // height: 200,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Kita adalah masa kebahagiaan yang terlewat',
+                        style: TextStyle(
+                          fontFamily: 'Rajdhani',
+                          color: Colors.black87,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 7,
+                      ),
+                      Text(
+                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+                        style: TextStyle(
+                          fontFamily: 'Rajdhani',
+                          color: Colors.black87,
+                          fontSize: 14,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        'Oleh Ranti',
+                        style: TextStyle(
+                          fontFamily: 'Rajdhani',
+                          color: Colors.black87,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ]),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                padding: new EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  // bisa untuk border
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(1, 2),
+                    ),
+                  ],
+                ),
+                // height: 200,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Bermakna Banyak',
+                        style: TextStyle(
+                          fontFamily: 'Rajdhani',
+                          color: Colors.black87,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 7,
+                      ),
+                      Text(
+                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+                        style: TextStyle(
+                          fontFamily: 'Rajdhani',
+                          color: Colors.black87,
+                          fontSize: 14,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        'Oleh Ranti',
+                        style: TextStyle(
+                          fontFamily: 'Rajdhani',
+                          color: Colors.black87,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ]),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                padding: new EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  // bisa untuk border
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: Offset(1, 2),
+                    ),
+                  ],
+                ),
+                // height: 200,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
@@ -80,8 +181,9 @@ class _BerandaState extends State<Beranda> {
                       Text(
                         'Artikel 1',
                         style: TextStyle(
+                          fontFamily: 'Rajdhani',
                           color: Colors.black87,
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -91,105 +193,19 @@ class _BerandaState extends State<Beranda> {
                       Text(
                         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
                         style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ]),
-              ),
-              Container(
-                padding: new EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                    bottom: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                    left: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                    right: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                  ),
-                ),
-                height: 200,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Artikel 2',
-                        style: TextStyle(
+                          fontFamily: 'Rajdhani',
                           color: Colors.black87,
                           fontSize: 14,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(
-                        height: 7,
+                        height: 15,
                       ),
                       Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+                        'Oleh Ranti',
                         style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ]),
-              ),
-              Container(
-                padding: new EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                    bottom: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                    left: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                    right: BorderSide(
-                      color: Colors.black12,
-                      width: 1.0,
-                    ),
-                  ),
-                ),
-                height: 200,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Artikel 3',
-                        style: TextStyle(
+                          fontFamily: 'Rajdhani',
                           color: Colors.black87,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Text(
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                        style: TextStyle(
-                          color: Colors.black54,
                           fontSize: 14,
                         ),
                       ),
