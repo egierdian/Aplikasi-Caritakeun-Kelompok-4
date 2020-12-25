@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:caritakeun_kelompok4/pages/login.dart';
 
-class Daftar extends StatefulWidget {
+class Artikel extends StatefulWidget {
   @override
-  _DaftarState createState() => _DaftarState();
+  _Artikel createState() => _Artikel();
 }
 
-class _DaftarState extends State<Daftar> {
+class _Artikel extends State<Artikel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,23 +25,17 @@ class _DaftarState extends State<Daftar> {
       body: Builder(builder: (BuildContext context) {
         return ListView(
           scrollDirection: Axis.vertical,
-          padding: const EdgeInsets.only(
-            bottom: 10,
-            right: 10,
-            left: 10,
-            top: 70,
-          ),
+          padding: const EdgeInsets.all(10),
           children: <Widget>[
             Container(
                 padding: EdgeInsets.only(
-                  top: 0,
-                  right: 25,
-                  left: 25,
-                  bottom: 0,
+                  top: 10,
+                  right: 20,
+                  left: 20,
+                  bottom: 10,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
                       padding: new EdgeInsets.only(
@@ -70,7 +63,7 @@ class _DaftarState extends State<Daftar> {
                             TextField(
                               // controller: usernameController,
                               decoration: InputDecoration(
-                                labelText: 'Nama',
+                                labelText: 'Judul',
                                 labelStyle: TextStyle(
                                   fontSize: 14,
                                   fontFamily: 'Rajdhani',
@@ -111,7 +104,7 @@ class _DaftarState extends State<Daftar> {
                             TextField(
                               // controller: usernameController,
                               decoration: InputDecoration(
-                                labelText: 'Email',
+                                labelText: 'Oleh',
                                 labelStyle: TextStyle(
                                   fontSize: 14,
                                   fontFamily: 'Rajdhani',
@@ -152,14 +145,14 @@ class _DaftarState extends State<Daftar> {
                             TextField(
                               // controller: usernameController,
                               decoration: InputDecoration(
-                                labelText: 'Password',
+                                labelText: 'Isi',
                                 labelStyle: TextStyle(
                                   fontSize: 14,
                                   fontFamily: 'Rajdhani',
                                 ),
                               ),
-                              autofocus: false,
-                              obscureText: true,
+                              maxLines: null,
+                              keyboardType: TextInputType.multiline,
                             ),
                             SizedBox(
                               height: 10,
@@ -203,57 +196,6 @@ class _DaftarState extends State<Daftar> {
                               textColor: Colors.white,
                               onPressed: () {
                                 // showToast('Username Password Salah');
-                              },
-                            ),
-                          ]),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      padding: new EdgeInsets.only(
-                        bottom: 0,
-                        top: 20,
-                        right: 10,
-                        left: 10,
-                      ),
-
-                      // height: 200,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Center(
-                              child: Text(
-                                'Sudah punya akun?',
-                                style: TextStyle(
-                                  fontFamily: 'Rajdhani',
-                                  color: Colors.black87,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                            FlatButton(
-                              padding: new EdgeInsets.only(
-                                right: 50,
-                                left: 50,
-                              ),
-                              child: Text(
-                                'Masuk',
-                                style: TextStyle(
-                                  fontFamily: 'Rajdhani',
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              color: Colors.transparent,
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Login(),
-                                    ));
                               },
                             ),
                           ]),
