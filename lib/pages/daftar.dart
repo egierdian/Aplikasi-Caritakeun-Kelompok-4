@@ -184,7 +184,6 @@ class _DaftarState extends State<Daftar> {
                           ),
                         ],
                       ),
-                      // height: 200,
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[

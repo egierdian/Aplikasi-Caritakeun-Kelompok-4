@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:caritakeun_kelompok4/pages/artikel.dart';
+import 'package:caritakeun_kelompok4/pages/login.dart';
 
 class Beranda extends StatefulWidget {
   @override
@@ -21,6 +22,18 @@ class _BerandaState extends State<Beranda> {
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
               )),
+          centerTitle: true,
+          leading: CloseButton(
+            color: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Login(),
+                ),
+              );
+            },
+          ),
           actions: <Widget>[
             IconButton(
               color: Colors.white,
@@ -48,7 +61,6 @@ class _BerandaState extends State<Beranda> {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
                       padding: new EdgeInsets.all(10.0),

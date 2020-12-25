@@ -17,6 +17,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter:
+  assets:     
+    - assets/img/signin.png
+
   fonts:
     - family: Rajdhani
       fonts:
