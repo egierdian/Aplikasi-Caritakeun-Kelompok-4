@@ -30,7 +30,6 @@ class _Home extends State<Home> {
                     new Image.asset(
                       'assets/img/signin.png',
                       height: 200,
-                      // color: Colors.transparent,
                     )
                   ]),
             ),

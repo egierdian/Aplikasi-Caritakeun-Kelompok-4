@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:caritakeun_kelompok4/pages/artikel.dart';
-import 'package:caritakeun_kelompok4/pages/login.dart';
+import 'package:caritakeun_kelompok4/handler/auth_handler.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Beranda extends StatefulWidget {
+  final FirebaseUser user;
+  Beranda(this.user);
   @override
   _BerandaState createState() => _BerandaState();
 }
@@ -25,13 +28,8 @@ class _BerandaState extends State<Beranda> {
           centerTitle: true,
           leading: CloseButton(
             color: Colors.white,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Login(),
-                ),
-              );
+            onPressed: () async {
+              await AuthHandler.signOut();
             },
           ),
           actions: <Widget>[

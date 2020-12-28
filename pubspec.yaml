@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
+  firebase_auth: ^0.15.4
+  provider: ^4.3.2+3
 
 dev_dependencies:
   flutter_test:
@@ -19,6 +21,7 @@ dev_dependencies:
 flutter:
   assets:     
     - assets/img/signin.png
+    - assets/img/signup.png
 
   fonts:
     - family: Rajdhani

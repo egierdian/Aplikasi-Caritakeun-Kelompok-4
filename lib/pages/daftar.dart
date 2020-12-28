@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:caritakeun_kelompok4/pages/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:caritakeun_kelompok4/handler/auth_handler.dart';
 
 class Daftar extends StatefulWidget {
   @override
@@ -8,30 +10,23 @@ class Daftar extends StatefulWidget {
 }
 
 class _DaftarState extends State<Daftar> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final globalKey = GlobalKey<ScaffoldState>();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xFF1D1735),
-        brightness: Brightness.light,
-        title: Text('Caritakeun',
-            style: TextStyle(
-              fontFamily: 'Rajdhani',
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-            )),
-      ),
-      body: Builder(builder: (BuildContext context) {
-        return ListView(
-          scrollDirection: Axis.vertical,
-          padding: const EdgeInsets.only(
-            bottom: 10,
-            right: 10,
-            left: 10,
-            top: 70,
-          ),
+      key: globalKey,
+      body: Container(
+        color: Colors.white,
+        padding: EdgeInsets.only(
+          left: 25,
+          right: 25,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
                 padding: EdgeInsets.only(
@@ -45,71 +40,27 @@ class _DaftarState extends State<Daftar> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      padding: new EdgeInsets.only(
-                        right: 10,
-                        left: 10,
-                        top: 0,
-                        bottom: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        // bisa untuk border
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(1, 2),
-                          ),
-                        ],
-                      ),
+                      color: Colors.transparent,
+                      padding: new EdgeInsets.all(5.0),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
-                            TextField(
-                              // controller: usernameController,
-                              decoration: InputDecoration(
-                                labelText: 'Nama',
-                                labelStyle: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: 'Rajdhani',
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
+                            new Image.asset(
+                              'assets/img/signup.png',
+                              height: 150,
+                            )
                           ]),
-                    ),
-                    SizedBox(
-                      height: 15,
                     ),
                     Container(
                       padding: new EdgeInsets.only(
-                        right: 10,
-                        left: 10,
-                        top: 0,
-                        bottom: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        // bisa untuk border
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(1, 2),
-                          ),
-                        ],
+                        right:5,
+                        left:5,
                       ),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             TextField(
-                              // controller: usernameController,
+                              controller: emailController,
                               decoration: InputDecoration(
                                 labelText: 'Email',
                                 labelStyle: TextStyle(
@@ -128,29 +79,14 @@ class _DaftarState extends State<Daftar> {
                     ),
                     Container(
                       padding: new EdgeInsets.only(
-                        right: 10,
-                        left: 10,
-                        top: 0,
-                        bottom: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        // bisa untuk border
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(1, 2),
-                          ),
-                        ],
+                        right: 5,
+                        left: 5,
                       ),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             TextField(
-                              // controller: usernameController,
+                              controller: passwordController,
                               decoration: InputDecoration(
                                 labelText: 'Password',
                                 labelStyle: TextStyle(
@@ -173,7 +109,7 @@ class _DaftarState extends State<Daftar> {
                       padding: new EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                         // bisa untuk border
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(50),
                         color: Color(0xFF1D1735),
                         boxShadow: [
                           BoxShadow(
@@ -188,7 +124,7 @@ class _DaftarState extends State<Daftar> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             FlatButton(
-                              height: 50,
+                              // height: 0,
                               child: Text(
                                 'DAFTAR',
                                 style: TextStyle(
@@ -200,8 +136,9 @@ class _DaftarState extends State<Daftar> {
                               ),
                               color: Color(0xFF1D1735),
                               textColor: Colors.white,
-                              onPressed: () {
-                                // showToast('Username Password Salah');
+                              onPressed: () async {
+                                await AuthHandler.signUp(emailController.text,
+                                    passwordController.text);
                               },
                             ),
                           ]),
@@ -249,10 +186,10 @@ class _DaftarState extends State<Daftar> {
                               color: Colors.transparent,
                               onPressed: () {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Login(),
-                                    ));
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Login(),
+                                            ));
                               },
                             ),
                           ]),
@@ -260,8 +197,8 @@ class _DaftarState extends State<Daftar> {
                   ],
                 )),
           ],
-        );
-      }),
+        ),
+      ),
     );
   }
 }
