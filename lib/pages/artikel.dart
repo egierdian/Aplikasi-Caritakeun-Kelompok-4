@@ -1,14 +1,46 @@
+import 'package:caritakeun_kelompok4/model/item.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:caritakeun_kelompok4/handler/auth_handler.dart';
+import 'package:provider/provider.dart';
+import '../main.dart';
 
 class Artikel extends StatefulWidget {
+  final Item item;
+  final String id;
+
+  Artikel({@required this.item, this.id});
+
   @override
   _Artikel createState() => _Artikel();
 }
 
 class _Artikel extends State<Artikel> {
+  TextEditingController judulController = new TextEditingController();
+  TextEditingController isiController = new TextEditingController();
+  TextEditingController olehController = new TextEditingController();
+
+  @override
+  void initState() {
+    judulController = TextEditingController();
+    isiController = TextEditingController();
+    olehController = TextEditingController();
+    judulController.text = '';
+    isiController.text = '';
+    olehController.text = '';
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (widget.item != null) {
+      judulController.text = widget.item.judul;
+      isiController.text = widget.item.isi;
+      olehController.text = widget.item.oleh;
+    }
+    final currentUser = Provider.of<MyUser>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -61,7 +93,7 @@ class _Artikel extends State<Artikel> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             TextField(
-                              // controller: usernameController,
+                              controller: judulController,
                               decoration: InputDecoration(
                                 labelText: 'Judul',
                                 labelStyle: TextStyle(
@@ -102,7 +134,7 @@ class _Artikel extends State<Artikel> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             TextField(
-                              // controller: usernameController,
+                              controller: olehController,
                               decoration: InputDecoration(
                                 labelText: 'Oleh',
                                 labelStyle: TextStyle(
@@ -143,7 +175,7 @@ class _Artikel extends State<Artikel> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             TextField(
-                              // controller: usernameController,
+                              controller: isiController,
                               decoration: InputDecoration(
                                 labelText: 'Isi',
                                 labelStyle: TextStyle(
@@ -182,9 +214,9 @@ class _Artikel extends State<Artikel> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             FlatButton(
-                              height: 50,
+                              // height: 50,
                               child: Text(
-                                'DAFTAR',
+                                'Submit',
                                 style: TextStyle(
                                   fontFamily: 'Rajdhani',
                                   color: Colors.white,
@@ -195,7 +227,29 @@ class _Artikel extends State<Artikel> {
                               color: Color(0xFF1D1735),
                               textColor: Colors.white,
                               onPressed: () {
-                                // showToast('Username Password Salah');
+                                Item item = Item(
+                                  judul: judulController.text,
+                                  isi: isiController.text,
+                                  oleh: olehController.text,
+                                  userid: currentUser.uid,
+                                );
+                                if (judulController.text == '' ||
+                                    isiController.text == '' ||
+                                    olehController.text == '') {
+                                  showToast('Lengkapi data.');
+                                } else {
+                                  if (widget.item == null) {
+                                    FirebaseFirestore.instance
+                                        .collection('artikel')
+                                        .add(item.toJson());
+                                  } else {
+                                    FirebaseFirestore.instance
+                                        .collection('artikel')
+                                        .doc(widget.id)
+                                        .update(item.toJson());
+                                  }
+                                  Navigator.pop(context);
+                                }
                               },
                             ),
                           ]),
@@ -206,5 +260,16 @@ class _Artikel extends State<Artikel> {
         );
       }),
     );
+  }
+
+  showToast(text) {
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.5),
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 }

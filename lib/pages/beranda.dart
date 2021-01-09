@@ -1,18 +1,32 @@
+import 'package:caritakeun_kelompok4/model/item.dart';
+import 'package:caritakeun_kelompok4/widget/carddata.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:caritakeun_kelompok4/pages/artikel.dart';
 import 'package:caritakeun_kelompok4/handler/auth_handler.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+
+import '../main.dart';
 
 class Beranda extends StatefulWidget {
-  final FirebaseUser user;
-  Beranda(this.user);
+  final AuthHandler _auth = AuthHandler();
+
+  // final currentUser = Provider.of<MyUser>(context);
+  // Beranda(this.currentUser);
+
   @override
   _BerandaState createState() => _BerandaState();
 }
 
 class _BerandaState extends State<Beranda> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final currentUser = Provider.of<MyUser>(context);
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
@@ -29,7 +43,7 @@ class _BerandaState extends State<Beranda> {
           leading: CloseButton(
             color: Colors.white,
             onPressed: () async {
-              await AuthHandler.signOut();
+              await AuthHandler().signOut();
             },
           ),
           actions: <Widget>[
@@ -40,260 +54,42 @@ class _BerandaState extends State<Beranda> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Artikel(),
+                      builder: (context) => Artikel(
+                        item: null,
+                      ),
                     ));
               },
             )
           ]),
-      body: Builder(builder: (BuildContext context) {
-        return ListView(
-          scrollDirection: Axis.vertical,
-          padding: const EdgeInsets.all(10),
-          children: <Widget>[
-            Container(
-                padding: EdgeInsets.only(
-                  top: 10,
-                  right: 20,
-                  left: 20,
-                  bottom: 10,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Container(
-                      padding: new EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        // bisa untuk border
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(1, 2),
-                          ),
-                        ],
-                      ),
-                      // height: 200,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Kita adalah masa kebahagiaan yang terlewat',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 14,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'Oleh Ranti',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ]),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Container(
-                      padding: new EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        // bisa untuk border
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(1, 2),
-                          ),
-                        ],
-                      ),
-                      // height: 200,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Kita adalah masa kebahagiaan yang terlewat',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 14,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'Oleh Ranti',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ]),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Container(
-                      padding: new EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        // bisa untuk border
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(1, 2),
-                          ),
-                        ],
-                      ),
-                      // height: 200,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Bermakna Banyak',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 14,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'Oleh Ranti',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ]),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Container(
-                      padding: new EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        // bisa untuk border
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(1, 2),
-                          ),
-                        ],
-                      ),
-                      // height: 200,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Artikel 1',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Text(
-                              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 14,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              'Oleh Ranti',
-                              style: TextStyle(
-                                fontFamily: 'Rajdhani',
-                                color: Colors.black87,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ]),
-                    ),
-                  ],
-                )),
-          ],
-        );
-      }),
+      body: Container(
+        // height: 260,
+        padding: EdgeInsets.all(5),
+        color: Colors.white,
+        child: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('artikel').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                // child: CircularProgressIndicator(),
+                child: Text('Data tidak ditemukan'),
+              );
+            }
+
+            return ListView(
+              scrollDirection: Axis.vertical,
+              children: snapshot.data.docs.map((document) {
+                Item item = Item(
+                    judul: document['judul'],
+                    isi: document['isi'],
+                    oleh: document['oleh'],
+                    userid: document['userid']);
+                return CardData(item: item, id: document.id);
+              }).toList(),
+            );
+          },
+        ),
+      ),
     );
   }
 }

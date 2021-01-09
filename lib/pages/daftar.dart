@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:caritakeun_kelompok4/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:caritakeun_kelompok4/handler/auth_handler.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Daftar extends StatefulWidget {
   @override
@@ -39,22 +40,22 @@ class _DaftarState extends State<Daftar> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
-                      color: Colors.transparent,
-                      padding: new EdgeInsets.all(5.0),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            new Image.asset(
-                              'assets/img/signup.png',
-                              height: 150,
-                            )
-                          ]),
-                    ),
+                    // Container(
+                    //   color: Colors.transparent,
+                    //   padding: new EdgeInsets.all(5.0),
+                    //   child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.stretch,
+                    //       children: <Widget>[
+                    //         new Image.asset(
+                    //           'assets/img/signup.png',
+                    //           height: 150,
+                    //         )
+                    //       ]),
+                    // ),
                     Container(
                       padding: new EdgeInsets.only(
-                        right:5,
-                        left:5,
+                        right: 5,
+                        left: 5,
                       ),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -137,8 +138,19 @@ class _DaftarState extends State<Daftar> {
                               color: Color(0xFF1D1735),
                               textColor: Colors.white,
                               onPressed: () async {
-                                await AuthHandler.signUp(emailController.text,
-                                    passwordController.text);
+                                if (emailController.text == '' ||
+                                    passwordController.text == '') {
+                                  showToast('Lengkapi data');
+                                } else {
+                                  await AuthHandler().signUp(
+                                      emailController.text,
+                                      passwordController.text);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Login(),
+                                      ));
+                                }
                               },
                             ),
                           ]),
@@ -186,10 +198,10 @@ class _DaftarState extends State<Daftar> {
                               color: Colors.transparent,
                               onPressed: () {
                                 Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => Login(),
-                                            ));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Login(),
+                                    ));
                               },
                             ),
                           ]),
@@ -200,5 +212,16 @@ class _DaftarState extends State<Daftar> {
         ),
       ),
     );
+  }
+
+  showToast(text) {
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.5),
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 }
